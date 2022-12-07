@@ -1,13 +1,16 @@
 requirements: docker, python
-using the following libraries: fastapi, uvicorn, pydantic
 
-to run use:
+libraries: fastapi, uvicorn, pydantic
+
+How to use:
 ```bash
+ git clone https://github.com/EASS-HIT-PART-A-2022-CLASS-II/Ex1_YanivLavi.git
+ cd Ex1_YanivLavi
  docker build -t fastapi_demo .
  docker run -ti -p 8989:8080 fastapi_demo
 ```
 
-try to add track using curl or browser
+Try to add a new track using curl or using docs http://127.0.0.1:8989/docs 
 ```
 curl -X 'POST' \
   'http://127.0.0.1:8989/add' \
