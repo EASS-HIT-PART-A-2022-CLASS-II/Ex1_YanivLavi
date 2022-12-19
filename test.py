@@ -46,7 +46,7 @@ print(r.json())
 
 # Read the playlist
 r = requests.get("http://localhost:8989/playlists/1")
-print("\nReading playlist info from http://localhost:8989/tracks/1:")
+print("\nReading playlist info from http://localhost:8989/playlists/1:")
 print(r.json())
 
 # # Delete the track
