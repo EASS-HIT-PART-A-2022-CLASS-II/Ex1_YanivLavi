@@ -14,8 +14,17 @@ class Track(BaseModel):
     length: str = "3:14"
     size: str = "12155KB"
     created: str = "12/12/2013"
-    # owner: User = "asdasd"
-    path: str = "/sdad/asddasd/sad.mp3"
+    owner: User = {"0","user1"}
+    path: str = "/user/home/track01.mp3"
+
+class Playlist(BaseModel):
+    user: User
+    tracks: list
+
+def add_track_to_playlist(Track):
+    # get list of tracks by user
+    #tracks.insert(Track)
+    return Track
 
 def add_track(Track):
     # add track todo

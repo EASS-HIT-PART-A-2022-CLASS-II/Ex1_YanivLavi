@@ -16,6 +16,11 @@ def add(track: Track):
 def delete(track: Track):
     return {"Track was deleted":  delete_track(track)}
 
-# @app.post("/info")
-# def info(id):
-#     return {"Track info":  track_info(id)}
+@app.post("/info")
+def info(id):
+    return {"Track info":  track_info(id)}
+
+
+# @app.post("/del")
+# def delete(track: Track):
+#     return {"Track was deleted":  delete_track(track)}
