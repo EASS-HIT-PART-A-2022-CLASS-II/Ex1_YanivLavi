@@ -13,8 +13,8 @@ class Track(BaseModel):
     name: str
     artist: str
     album: str
-    genre: str = ""
-    duration: int = 1
+    genre: str 
+    duration: int 
     # owner: User
 
     # def add_to_playlist(self, playlist: Playlist):
