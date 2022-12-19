@@ -1,3 +1,5 @@
 FastApi
 Uvicorn
 Pydantic
+pytest
+typing
