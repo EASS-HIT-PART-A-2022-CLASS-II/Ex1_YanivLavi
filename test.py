@@ -1,6 +1,4 @@
 import requests
-# from models import *
-# from main import *
 
 # Create a new track
 track_data = {
