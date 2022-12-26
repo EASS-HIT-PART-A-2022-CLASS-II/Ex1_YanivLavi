@@ -6,10 +6,22 @@ from models import *
 
 app = FastAPI()
 
-# In-memory database 
-users = {}
+# # In-memory database 
+# users = {}
 tracks = {}
 playlists = {}
+
+# json files database
+# Load the tracks from the JSON file
+with open("./db/tracks.json", "r") as f:
+    tracks_json = json.load(f)
+
+# Load the playlists from the JSON file
+with open("./db/playlists.json", "r") as f:
+    playlists_json = json.load(f)
+
+# for track in tracks_json:
+#     tracks.append(track)
 
 # Read a specific track
 @app.get("/tracks/{track_id}")

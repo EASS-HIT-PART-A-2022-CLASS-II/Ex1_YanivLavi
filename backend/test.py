@@ -21,7 +21,7 @@ track_data = {
 playlist_data = {
     "id": 1,
     "name": "My Favorite Songs",
-    "tracks": [track_data]
+    "tracks": [1]
 }
 
 print("Testing...")
