@@ -1,5 +1,12 @@
 import requests
 
+# Create a new user
+# "owner": {
+#     "id": 1,
+#     "name": "John Smith",
+#     "email": "john@example.com"
+# }
+
 # Create a new track
 track_data = {
     "id": 1,
@@ -7,23 +14,18 @@ track_data = {
     "artist": "Artist 1",
     "album": "Album 1",
     "genre": "Pop",
-    "duration": 180,
-
+    "duration": 180
 }
-# "owner": {
-#     "id": 1,
-#     "name": "John Smith",
-#     "email": "john@example.com"
-# }
+
 # Create a new playlist
 playlist_data = {
     "id": 1,
     "name": "My Favorite Songs",
-    "tracks": [track_data, track_data, track_data]
+    "tracks": [track_data]
 }
 
 print("Testing...")
-print("Creating a track and a playlist, add the track 3 times to the playlist, read track, read playlist")
+print("Creating a track and a playlist, add the track the playlist, read track, read playlist")
 
 print(
     "\nPossible response codes:\n200: json is returned\n404: Not found\n409: Already exists\n\n")

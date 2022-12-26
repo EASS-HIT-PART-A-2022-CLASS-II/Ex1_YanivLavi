@@ -17,7 +17,7 @@ def read_track(track_id: int):
     if track_id not in tracks:
         raise HTTPException(status_code=404, detail="Track not found")
     track = tracks[track_id]
-    return {"id": track.id, "name": track.name, "artist": track.artist, "album": track.album}
+    return {"id": track.id, "name": track.name, "artist": track.artist, "album": track.album, "genre": track.genre, "duration": track.duration}
     # return {track.get_info()}
 
 # Create a new track
@@ -26,7 +26,7 @@ def create_track(track: Track):
     if track.id in tracks:
         raise HTTPException(status_code=409, detail="Track already exists")
     tracks[track.id] = track
-    return {"id": track.id, "name": track.name, "artist": track.artist, "album": track.album}
+    return {"id": track.id, "name": track.name, "artist": track.artist, "album": track.album, "genre": track.genre, "duration": track.duration}
 
 # Delete a specific track
 @app.delete("/tracks/{track_id}")
