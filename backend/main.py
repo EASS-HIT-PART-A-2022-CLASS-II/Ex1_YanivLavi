@@ -62,7 +62,7 @@ def create_playlist(playlist: Playlist):
 def read_playlist(playlist_id: int):
     if playlist_id not in playlists:
         raise HTTPException(status_code=404, detail="Playlist not found")
-    playlist = playlists[playlist_id]
+    playlist = playlists[playlist_id]  # maybe del doesn't work
     return {"id": playlist.id, "name": playlist.name, "tracks": playlist.tracks}
 
 # Delete a specific playlist
@@ -70,7 +70,7 @@ def read_playlist(playlist_id: int):
 def delete_playlist(playlist_id: int):
     if playlist_id not in playlists:
         raise HTTPException(status_code=404, detail="Playlist not found")
-    del playlists[playlist_id]
+    del playlists[playlist_id]  # maybe del doesn't work
     return {"message": "Playlist deleted"}
 
 # #user endpoints

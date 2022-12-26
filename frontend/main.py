@@ -49,7 +49,7 @@ elif read_write == "Write":
         st.header("Add a new playlist")
         playlist_id = st.number_input("ID:")
         playlist_name = st.text_input("Name:")
-        playlist_tracks = st.text_input("Tracks (comma-separated):")
+        playlist_tracks = st.text_input("Tracks IDs(comma-separated):")
         if st.button("Add playlist"):
             playlist_data = {
                 "id": playlist_id,
