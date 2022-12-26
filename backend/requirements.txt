@@ -1,0 +1,6 @@
+FastApi
+Uvicorn
+Pydantic
+pytest
+typing
+streamlit 

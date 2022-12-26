@@ -3,13 +3,18 @@ import requests
 # Create a new track
 track_data = {
     "id": 1,
-    "name": "Sweet Child o' Mine",
-    "artist": "Guns N' Roses",
-    "album": "Appetite for Destruction",
-    "genre": "Rock",
-    "duration": "180"
-}
+    "name": "Song 1",
+    "artist": "Artist 1",
+    "album": "Album 1",
+    "genre": "Pop",
+    "duration": 180,
 
+}
+# "owner": {
+#     "id": 1,
+#     "name": "John Smith",
+#     "email": "john@example.com"
+# }
 # Create a new playlist
 playlist_data = {
     "id": 1,

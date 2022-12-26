@@ -25,7 +25,7 @@ git clone https://github.com/EASS-HIT-PART-A-2022-CLASS-II/Ex1_YanivLavi.git
 ```
 2. Navigate to the project directory:
 ```
-cd Ex1_YanivLavi
+cd Ex1_YanivLavi/backend
 ```
 3. Build the Docker image:
 ```
