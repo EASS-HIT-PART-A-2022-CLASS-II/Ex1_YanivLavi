@@ -26,12 +26,12 @@ elif read_write == "Write":
     if write_type == "Track":
         # Add a section for adding new tracks
         st.header("Add a new track")
-        track_id = st.number_input("ID:", key="track_id")
+        track_id = st.number_input("ID:")
         track_name = st.text_input("Name:")
         track_artist = st.text_input("Artist:")
         track_album = st.text_input("Album:")
         track_genre = st.text_input("Genre:")
-        track_duration = st.number_input("Duration (in seconds):", key="track_duration")
+        track_duration = st.number_input("Duration (in seconds):")
         if st.button("Add track"):
             track_data = {
                 "id": track_id,
@@ -43,10 +43,11 @@ elif read_write == "Write":
             }
             requests.post("http://172.20.0.2:8080/tracks", json=track_data)
             st.success("Track added successfully!")
+    
     elif write_type == "Playlist":    
         # Add a section for adding new playlists
         st.header("Add a new playlist")
-        playlist_id = st.number_input("ID:", key="playlist_id")
+        playlist_id = st.number_input("ID:")
         playlist_name = st.text_input("Name:")
         playlist_tracks = st.text_input("Tracks (comma-separated):")
         if st.button("Add playlist"):
