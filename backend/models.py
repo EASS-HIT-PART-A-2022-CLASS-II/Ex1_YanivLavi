@@ -27,18 +27,32 @@ class Track(BaseModel):
             'duration': self.duration
             
         }
-# ,'owner': self.owner
 
 class Playlist(BaseModel):
     id: int
     name: str
-    tracks: List[Track]
+    tracks: List[int]
     # owner: User
 
-    def add_track(self, track: Track):
-        self.tracks.append(track)
+    def add_track(self, track_id: int):
+        self.tracks.append(track_id)
 
-    def remove_track(self, track: Track):
-        self.tracks.remove(track)
+    def remove_track(self, track_id: int):
+        self.tracks.remove(track_id)
+
+
+
+# class Playlist(BaseModel):
+#     id: int
+#     name: str
+#     tracks: List[Track]
+#     # owner: User
+
+#     def add_track(self, track: Track):
+#         self.tracks.append(track)
+
+#     def remove_track(self, track: Track):
+#         self.tracks.remove(track)
+
 
 

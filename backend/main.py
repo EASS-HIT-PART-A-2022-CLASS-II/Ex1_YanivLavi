@@ -6,10 +6,22 @@ from models import *
 
 app = FastAPI()
 
-# In-memory database 
-users = {}
+# # In-memory database 
+# users = {}
 tracks = {}
 playlists = {}
+
+# json files database
+# Load the tracks from the JSON file
+with open("./db/tracks.json", "r") as f:
+    tracks_json = json.load(f)
+
+# Load the playlists from the JSON file
+with open("./db/playlists.json", "r") as f:
+    playlists_json = json.load(f)
+
+# for track in tracks_json:
+#     tracks.append(track)
 
 # Read a specific track
 @app.get("/tracks/{track_id}")
@@ -50,7 +62,7 @@ def create_playlist(playlist: Playlist):
 def read_playlist(playlist_id: int):
     if playlist_id not in playlists:
         raise HTTPException(status_code=404, detail="Playlist not found")
-    playlist = playlists[playlist_id]
+    playlist = playlists[playlist_id]  # maybe del doesn't work
     return {"id": playlist.id, "name": playlist.name, "tracks": playlist.tracks}
 
 # Delete a specific playlist
@@ -58,7 +70,7 @@ def read_playlist(playlist_id: int):
 def delete_playlist(playlist_id: int):
     if playlist_id not in playlists:
         raise HTTPException(status_code=404, detail="Playlist not found")
-    del playlists[playlist_id]
+    del playlists[playlist_id]  # maybe del doesn't work
     return {"message": "Playlist deleted"}
 
 # #user endpoints
