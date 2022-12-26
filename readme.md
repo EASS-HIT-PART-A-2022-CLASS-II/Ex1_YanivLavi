@@ -25,21 +25,27 @@ git clone https://github.com/EASS-HIT-PART-A-2022-CLASS-II/Ex1_YanivLavi.git
 ```
 2. Navigate to the project directory:
 ```
-cd Ex1_YanivLavi/backend
+cd Ex1_YanivLavi
 ```
-3. Build the Docker image:
+3. Build the Docker images:
 ```
-docker build -t fastapi_demo .
+docker build -t backend backend/
+docker build -t frontend frontend/
 ```
-4. Run the Docker container:
+4. Run the Docker containers:
 ```
-docker run -ti -p 8989:8080 fastapi_demo
+sudo docker network create MusicApp
+docker run -ti --name backend -p 8989:8080 --network MusicApp backend
+docker run -ti --name frontend -p 80:80 --network MusicApp frontend 
 ```
-5. Run the test script:
+5. Run the test script to load some data:
 ```
-python test.py
+python backend/test.py
+```
+6. Go to http://localhost/:
 ```
 
+```
 ## Additional Information
 
 This project was created as an exercise for the EASS-HIT-PART-A-2022-CLASS-II course.
