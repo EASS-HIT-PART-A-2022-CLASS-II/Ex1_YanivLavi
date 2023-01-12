@@ -70,5 +70,16 @@ def delete_playlist(playlist_id: int):
     return {"message": "Playlist deleted"}
 
 # Remove a specific track from playlist
-# @app.put("/playlists/{playlist_id}/{track_id}")
-# def 
+
+
+@app.delete("/playlists/{playlist_id}/tracks/{track_id}")
+def remove_track_from_playlist(playlist_id: int, track_id: int):
+    for playlist in playlists:
+        if playlist['id'] == playlist_id:
+            if track_id in playlist['tracks']:
+                playlist['tracks'].remove(track_id)
+                return {"message": "Track removed from playlist"}
+            else:
+                raise HTTPException(
+                    status_code=404, detail="Track not found in playlist")
+    raise HTTPException(status_code=404, detail="Playlist not found")

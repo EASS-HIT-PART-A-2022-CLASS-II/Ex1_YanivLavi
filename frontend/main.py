@@ -81,7 +81,8 @@ elif read_write == "Write":
             
 elif read_write == "Remove":
     # Remove data section
-    remove_type = st.radio("Remove track or playlist?", ("Track", "Playlist"))
+    remove_type = st.radio("Remove track or playlist?",
+                           ("Track", "Playlist", "Track from Playlist"))
 
     if remove_type == "Track":
         # Add a section for removing tracks
@@ -107,6 +108,20 @@ elif read_write == "Remove":
                 st.success("Playlist removed successfully!")
             else:
                 st.error("Error removing playlist.")
+
+    elif remove_type == "Track from Playlist":
+        # Remove track from playlist section
+        st.header("Remove a track from a playlist")
+        playlist_id = int(st.number_input("Enter playlist ID:"))
+        track_id = int(st.number_input("Enter track ID:"))
+
+        if st.button("Remove track"):
+            response = requests.delete(
+                f"http://172.20.0.2:8080/playlists/{playlist_id}/tracks/{track_id}")
+            if response.status_code == 200:
+                st.success("Track removed from playlist successfully!")
+            else:
+                st.error("Error removing track from playlist.")
 
 
 
