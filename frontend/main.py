@@ -12,13 +12,20 @@ if read_write == "Read":
     data_type = st.radio("Select data type:", ("Track", "Playlist"))
     if st.button("Get data"):
         if data_type == "Track":
-            data = requests.get(
-                f"http://172.20.0.2:8080/tracks/{id_input}").json()
-            st.write("Track data:", data)
+            try:
+                data = requests.get(
+                    f"http://172.20.0.2:8080/tracks/{id_input}").json()
+                st.write("Track data:", data)
+            except requests.exceptions.HTTPError as err:
+                st.error(err)
+
         elif data_type == "Playlist":
-            data = requests.get(
-                f"http://172.20.0.2:8080/playlists/{id_input}").json()
-            st.write("Playlist data:", data)
+            try:
+                data = requests.get(
+                    f"http://172.20.0.2:8080/playlists/{id_input}").json()
+                st.write("Playlist data:", data)
+            except requests.exceptions.HTTPError as err:
+                st.error(err)
 
 elif read_write == "Write":
     # Write data section
@@ -41,10 +48,14 @@ elif read_write == "Write":
                 "genre": track_genre,
                 "duration": track_duration
             }
-            requests.post("http://172.20.0.2:8080/tracks", json=track_data)
-            st.success("Track added successfully!")
-    
-    elif write_type == "Playlist":    
+            response = requests.post(
+                "http://172.20.0.2:8080/tracks", json=track_data)
+            if response.status_code == 200:
+                st.success("Track added successfully!")
+            else:
+                st.error("Error adding track.")
+
+    elif write_type == "Playlist":
         # Add a section for adding new playlists
         st.header("Add a new playlist")
         playlist_id = st.number_input("ID:")
@@ -56,8 +67,12 @@ elif read_write == "Write":
                 "name": playlist_name,
                 "tracks": playlist_tracks.split(",")
             }
-            requests.post("http://172.20.0.2:8080/playlists", json=playlist_data)
-            st.success("Playlist added successfully!")
+            response = requests.post(
+                "http://172.20.0.2:8080/playlists", json=playlist_data)
+            if response.status_code == 200:
+                st.success("Playlist added successfully!")
+            else:
+                st.error("Error adding playlist.")
             
 elif read_write == "Remove":
     # Remove data section
@@ -68,32 +83,25 @@ elif read_write == "Remove":
         st.header("Remove a track")
         track_id = st.number_input("ID:")
         if st.button("Remove track"):
-            requests.delete(f"http://172.20.0.2:8080/tracks/{track_id}")
-            st.success("Track removed successfully!")
+            track_id = int(track_id)
+            response = requests.delete(f"http://172.20.0.2:8080/tracks/{track_id}")
+            if response.status_code == 200:
+                st.success("Track removed successfully!")
+            else:
+                st.error("Error removing track.")
 
     elif remove_type == "Playlist":
         # Add a section for removing playlists
         st.header("Remove a playlist")
         playlist_id = st.number_input("ID:")
         if st.button("Remove playlist"):
-            requests.delete(f"http://172.20.0.2:8080/playlists/{playlist_id}")
-            st.success("Playlist removed successfully!")
+            playlist_id = int(playlist_id)
+            response = requests.delete(
+                f"http://172.20.0.2:8080/playlists/{playlist_id}")
+            if response.status_code == 200:
+                st.success("Playlist removed successfully!")
+            else:
+                st.error("Error removing playlist.")
 
 
-# def main():
-#     id_input = st.text_input("Enter an ID:")
-#     data_type = st.radio("Select data type:", ("Track", "Playlist"))
 
-#     if st.button("Get data"):
-#         if data_type == "Track":
-#             data = requests.get(
-#                 f"http://localhost:8989/tracks/{id_input}").json()
-#             st.write("Track data:", data)
-#         elif data_type == "Playlist":
-#             data = requests.get(
-#                 f"http://localhost:8989/playlists/{id_input}").json()
-#             st.write("Playlist data:", data)
-
-
-#     if __name__ == "__main__":
-#         st.run(main)
