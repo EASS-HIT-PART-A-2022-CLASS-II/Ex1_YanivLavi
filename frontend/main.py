@@ -71,6 +71,11 @@ elif read_write == "Write":
                 "http://172.20.0.2:8080/playlists", json=playlist_data)
             if response.status_code == 200:
                 st.success("Playlist added successfully!")
+            elif response.status_code == 404:
+                st.error("Error adding playlist. One or more track IDs may not exist.")
+            elif response.status_code == 409:
+                st.error(
+                    "Playlist's ID already exists")
             else:
                 st.error("Error adding playlist.")
             

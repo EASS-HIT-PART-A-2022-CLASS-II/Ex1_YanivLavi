@@ -38,17 +38,18 @@ def delete_track(track_id: int):
         if track_id in playlist['tracks']:
             playlist['tracks'].remove(track_id)
     return {"message": "Track deleted"}
-# @app.delete("/tracks/{track_id}")
-# def delete_track(track_id: int):
-#     global tracks
-#     tracks = [track for track in tracks if track['id'] != track_id]
-#     return {"message": "Track deleted"}
 
 # Create a new playlist
 @app.post("/playlists")
 def create_playlist(playlist: Playlist):
+    # Check if playlist already exists
     if any(x['id'] == playlist.id for x in playlists):
         raise HTTPException(status_code=409, detail="Playlist already exists")
+    # Check if all track ids exist in tracks list
+    for track_id in playlist.tracks:
+        if not any(x['id'] == track_id for x in tracks):
+            raise HTTPException(
+                status_code=404, detail=f"Track with id {track_id} not found")
     playlists.append(playlist.dict())
     return playlist
 
@@ -67,3 +68,7 @@ def delete_playlist(playlist_id: int):
     playlists = [
         playlist for playlist in playlists if playlist['id'] != playlist_id]
     return {"message": "Playlist deleted"}
+
+# Remove a specific track from playlist
+# @app.put("/playlists/{playlist_id}/{track_id}")
+# def 
