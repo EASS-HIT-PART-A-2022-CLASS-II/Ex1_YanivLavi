@@ -25,7 +25,6 @@ class Track(BaseModel):
             'album': self.album,
             'genre': self.genre,
             'duration': self.duration
-            
         }
 
 class Playlist(BaseModel):
