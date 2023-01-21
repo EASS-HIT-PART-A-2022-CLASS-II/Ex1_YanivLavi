@@ -38,14 +38,8 @@ sudo docker network create MusicApp
 docker run -ti --name backend -p 8989:8080 --network MusicApp backend
 docker run -ti --name frontend -p 80:80 --network MusicApp frontend 
 ```
-5. Run the test script to load some data:
-```
-python backend/test.py
-```
-6. Go to http://localhost/:
-```
+5. Go to http://localhost/
 
-```
 ## Additional Information
 
-This project was created as an exercise for the EASS-HIT-PART-A-2022-CLASS-II course.
+This project was created for the EASS-HIT-PART-A-2022-CLASS-II course.
